@@ -1,4 +1,4 @@
-import React from "react";
+import React, { cloneElement } from "react";
 import { Link, BrowserRouter as Router } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -65,7 +65,7 @@ const DisplaySearchedStock = ({searchedStock, saveToDb}) => {
 
 const DisplayFavoriteStocks = ({favoriteStocks,removeFromDb}) => {
   const classes = useStyles();
-
+  console.log({favoriteStocks})
   if (!favoriteStocks) return null
 
   return (
@@ -124,24 +124,72 @@ class Favorites extends React.Component {
       "sector": selectedStock.sector,
       "price": selectedStock.price,
     }
+    const token = localStorage.getItem("auth_key")
 
+    console.log({token})
     return fetch('http://localhost:3000/stocks',{
       method: 'POST',
       headers: {
-        "Content-Type":'application/json'
+        "Content-Type":'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(newStock)
     })
-    .then(() => {
-      
-      this.setState({
-        searchedStock: null,
-        favoriteStocks: [ ...this.state.favoriteStocks, newStock]
+    .then(resp => resp.json())
+    .then((resp) => {
+      console.log({resp})
+      const stockId = resp.id
+      const newFav = {
+        stock_id: stockId
+      }
+      fetch('http://localhost:3000/favorites',{
+        method: 'POST',
+        headers: {
+          "Content-Type":'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(newFav)
+      }).then(() => {
+        this.setState({
+          searchedStock: null,
+          favoriteStocks: [ ...this.state.favoriteStocks, newStock]
+        })
       })
+
     }).catch(err => {
       console.log(err)
     })
   }
+  // saveToDb=(selectedStock)=>{
+  //   const newStock = {
+  //     "name": selectedStock.name,
+  //     "symbol": selectedStock.symbol,
+  //     "sector": selectedStock.sector,
+  //     "price": selectedStock.price,
+  //   }
+  //   const token = localStorage.getItem("auth_key")
+
+  //   console.log({token})
+  //   return fetch('http://localhost:3000/favorites',{
+  //     method: 'POST',
+  //     headers: {
+  //       "Content-Type":'application/json',
+  //       'Authorization': `Bearer ${token}`
+  //     },
+  //     body: JSON.stringify(newStock)
+  //   })
+  //   .then(() => {
+      
+  //     this.setState({
+  //       searchedStock: null,
+  //       favoriteStocks: [ ...this.state.favoriteStocks, newStock]
+  //     })
+  //   }).catch(err => {
+  //     console.log(err)
+  //   })
+    
+  // }  
+ 
   removeFromDb=(selectedStock)=>{
     return fetch(`http://localhost:3000/stocks/${selectedStock.id}`,{
       method: 'DELETE'
@@ -189,17 +237,22 @@ class Favorites extends React.Component {
   };
 
   componentDidMount() {
-    fetch('http://localhost:3000/stocks',{
+    const token = localStorage.getItem("auth_key")
+
+    fetch('http://localhost:3000/favorites',{
       method: 'GET',
       headers: {
-        "Content-Type":'application/json'
+        "Content-Type":'application/json',
+        "Authorization": `Bearer ${token}`
       },
     })
       .then(resp => resp.json())
       .then(data => {
-        // console.log({data})
+        console.log({fav: data})
+        const stocks = data.map(d => d.stock).filter(v => v)
+        console.log({stocks})
         this.setState({
-          favoriteStocks: data
+          favoriteStocks: stocks
         })
       })
     // fetch favorites from backend api

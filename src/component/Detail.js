@@ -66,10 +66,10 @@ class Detail extends React.Component {
     ];
 
     return (
-      <div style={{ width: "100%", height: "100%" }}>
+      <div>
         <ReactEcharts
           option={option}
-          style={{ height: "50%", width: "1000px" }}
+          style={{ height: "500px", width: "1000px" }}
         />
       </div>
       );

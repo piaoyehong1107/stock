@@ -35,6 +35,20 @@ class App extends React.Component {
     return <Redirect to="/login" />;
   }
 
+  handleSignup = () => {
+    console.log('==> sign up')
+    // localStorage.clear();
+    // this.setState({ isLoggedIn: false });
+    this.props.history.push('/signup')
+  }
+
+  componentDidMount() {
+    if (localStorage.auth_key) {
+      this.setState({isLoggedIn: true})
+      this.props.history.push('/favorites')
+    }
+  }
+
   render() {
     const routes = [
       {
@@ -84,22 +98,28 @@ class App extends React.Component {
             <li>
               <button onClick={this.handleLogout}>Logout</button>
             </li>
+            <li>
+              <button onClick={this.handleSignup}>Signup</button>
+            </li>
           </ul>
         </div>
-
-        <Switch>
-          <Route 
-            path="/login"
-            component={() => <Login handleLogin={this.handleLogin} />}
-          />
-          <Route 
-            path="/signup"
-            component={() => <SignUp />}
-          />
-          {routes.map((r) => (
-            <PrivateRoute path={r.path} component={r.component} isLoggedIn={isLoggedIn}/>
-          ))}
-        </Switch>
+        <div style={{margin: '30px'}}>
+          <Switch>
+            <Route 
+              path="/signup"
+              exact={true}
+              component={() => <SignUp />}
+            />
+            <Route 
+              path="/login"
+              exact={true}
+              component={() => <Login handleLogin={this.handleLogin} />}
+            />
+            {routes.map((r) => (
+              <PrivateRoute path={r.path} exact={r.exact} component={r.component} isLoggedIn={isLoggedIn}/>
+            ))}
+          </Switch>
+        </div>
         {/* </BrowserRouter> */}
       </div>
     );

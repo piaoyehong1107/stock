@@ -36,8 +36,8 @@ class SignUp extends React.Component {
       <span className={'form-outer'}>
         <h2> Sign Up </h2>
         <form className={'add-book'} onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.username} onChange={this.handleInputChange} name='username' placeholder="Username"  />
-          <input type="password" value={this.state.password} onChange={this.handleInputChange} name='password' placeholder="Password"  />
+          <input style={{marginRight: '10px'}} type="text" value={this.state.username} onChange={this.handleInputChange} name='username' placeholder="Username"  />
+          <input style={{marginRight: '10px'}} type="password" value={this.state.password} onChange={this.handleInputChange} name='password' placeholder="Password"  />
           <input id="submit" type="submit" value="Submit" />
         </form>
       </span>
