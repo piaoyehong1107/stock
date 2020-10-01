@@ -54,12 +54,7 @@ const DisplaySearchedStock = ({searchedStock, saveToDb}) => {
       </Table>
     </TableContainer>
   )
-  // return (
-  //   <>
-  //     <div>{stockProfile.name}</div>
-  //     <div>{stockProfile.sector}</div>
-  //   </>
-  // )
+
 }
 
 
@@ -102,12 +97,7 @@ const DisplayFavoriteStocks = ({favoriteStocks,removeFromDb}) => {
       </Table>
     </TableContainer>
   )
-  // return (
-  //   <>
-  //     <div>{stockProfile.name}</div>
-  //     <div>{stockProfile.sector}</div>
-  //   </>
-  // )
+  
 }
 
 class Favorites extends React.Component {
@@ -160,35 +150,6 @@ class Favorites extends React.Component {
       console.log(err)
     })
   }
-  // saveToDb=(selectedStock)=>{
-  //   const newStock = {
-  //     "name": selectedStock.name,
-  //     "symbol": selectedStock.symbol,
-  //     "sector": selectedStock.sector,
-  //     "price": selectedStock.price,
-  //   }
-  //   const token = localStorage.getItem("auth_key")
-
-  //   console.log({token})
-  //   return fetch('http://localhost:3000/favorites',{
-  //     method: 'POST',
-  //     headers: {
-  //       "Content-Type":'application/json',
-  //       'Authorization': `Bearer ${token}`
-  //     },
-  //     body: JSON.stringify(newStock)
-  //   })
-  //   .then(() => {
-      
-  //     this.setState({
-  //       searchedStock: null,
-  //       favoriteStocks: [ ...this.state.favoriteStocks, newStock]
-  //     })
-  //   }).catch(err => {
-  //     console.log(err)
-  //   })
-    
-  // }  
  
   removeFromDb=(selectedStock)=>{
     return fetch(`http://localhost:3000/stocks/${selectedStock.id}`,{

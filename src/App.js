@@ -5,7 +5,7 @@ import Favorites from "./container/Favorites";
 import Market from "./container/Market";
 import Detail from "./component/Detail";
 import Login from "./auth/Login";
-import Logout from "./auth/Logout";
+
 import SignUp from "./auth/Signup";
 
 const PrivateRoute = ({ isLoggedIn, component: Component, ...rest }) => (
@@ -78,7 +78,7 @@ class App extends React.Component {
         <div
           style={{
             width: "10rem",
-            height: "100vh",
+            height: "1000px",
             background: "#eeeeee",
             fontSize: "24px",
           }}
@@ -90,7 +90,7 @@ class App extends React.Component {
           }}>
             <li
               style={{
-                marginBottom: "12px",
+                margin: "30px 0",
               }}
             >
               <Link 
@@ -101,7 +101,7 @@ class App extends React.Component {
               }} to="/">Market</Link>
             </li>
             <li style={{
-              marginBottom: '700px'
+              marginBottom: '600px'
             }}>
               <Link style={{
                 color: 'black',
