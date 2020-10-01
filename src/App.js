@@ -79,21 +79,35 @@ class App extends React.Component {
           style={{
             width: "10rem",
             height: "100vh",
-            padding: "16px",
             background: "#eeeeee",
             fontSize: "24px",
           }}
         >
-          <ul>
+          <ul style={{
+            listStyleType: 'none',
+            textDecoration: 'none',
+            padding: "20px 30px",
+          }}>
             <li
               style={{
                 marginBottom: "12px",
               }}
             >
-              <Link to="/">Market</Link>
+              <Link 
+              onMouseOver="this.style.background='red'"
+              style={{
+                color: 'black',
+                textDecoration: 'none',
+              }} to="/">Market</Link>
             </li>
-            <li>
-              <Link to="/favorites">Favorites</Link>
+            <li style={{
+              marginBottom: '700px'
+            }}>
+              <Link style={{
+                color: 'black',
+                textDecoration: 'none',
+                
+              }} to="/favorites">Favorites</Link>
             </li>
             <li>
               <button onClick={this.handleLogout}>Logout</button>

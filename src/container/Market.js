@@ -26,7 +26,7 @@ class Market extends React.Component {
         console.log({ data });
         this.setState({
           stocks: data.marketSummaryResponse.result,
-        });
+        }); 
       })
       .catch((err) => {
         console.error(err);
