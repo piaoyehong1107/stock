@@ -1,7 +1,5 @@
 import React from "react";
 import Stocks from "../component/Stocks";
-import ReactEcharts from "echarts-for-react";
-import moment from "moment";
 import { API_KEY } from "../constants";
 
 class Market extends React.Component {

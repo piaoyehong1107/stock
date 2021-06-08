@@ -27,7 +27,7 @@ class Stocks extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {stocks.map((s, i) => (
+                {/* {stocks.map((s, i) => (
                   <TableRow key={i}>
                     <TableCell align="right">{s.shortName}</TableCell>
                     <TableCell align="right">{s.symbol}</TableCell>
@@ -37,7 +37,7 @@ class Stocks extends React.Component {
                     </TableCell>
                     <TableCell align="right">{s.regularMarketChange.fmt}</TableCell>
                   </TableRow>
-                ))}
+                ))} */}
               </TableBody>
             </Table>
           </TableContainer>
