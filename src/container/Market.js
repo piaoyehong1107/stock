@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Stocks from "../component/Stocks";
 import { API_KEY } from "../constants";
 
-class Market extends React.Component {
-  state = {
-    stocks: [],
-  };
+function Market () {
 
-  componentDidMount() {
+  const [stocks, setStock] = useState([])
+  // state = {
+  //   stocks: [],
+  // };
+
+  useEffect (()=>{
       // var unirest = require("unirest");
 
       // var req = unirest("GET", "https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-summary");
@@ -28,10 +30,7 @@ class Market extends React.Component {
 
       //   console.log(res.body);
       // });
-
-
      fetch(
-
       "https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-summary",
       {
         method: "GET",
@@ -46,23 +45,19 @@ class Market extends React.Component {
       .then((data) => {
         console.log("-----------------");
         console.log({ data });
-        this.setState({
-          stocks: data.marketSummaryResponse.result,
-        }); 
+        setStock(
+          data.marketSummaryResponse.result,
+        ); 
       })
       .catch((err) => {
         console.error(err);
       })
-  }
-
-  render() {
-    const stocks = this.state.stocks;
+  },[])
     return (
       <div>
         <Stocks stocks={stocks} />
       </div>
     );
-  }
 }
 
 export default Market;
