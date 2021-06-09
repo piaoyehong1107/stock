@@ -7,10 +7,9 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
-class Stocks extends React.Component {
-  render() {
-    const stocks = this.props.stocks;
-
+function Stocks({
+  stocks})
+  {
     console.log(stocks)
     return (
         <>
@@ -27,7 +26,7 @@ class Stocks extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {/* {stocks.map((s, i) => (
+                {stocks.map((s, i) => (
                   <TableRow key={i}>
                     <TableCell align="right">{s.shortName}</TableCell>
                     <TableCell align="right">{s.symbol}</TableCell>
@@ -37,13 +36,12 @@ class Stocks extends React.Component {
                     </TableCell>
                     <TableCell align="right">{s.regularMarketChange.fmt}</TableCell>
                   </TableRow>
-                ))} */}
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
         </>
     );
-  }
 }
 
 export default Stocks;

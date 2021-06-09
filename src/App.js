@@ -10,7 +10,6 @@ function App(){
       <div className="showListMain">
         <div className="header">
           <Market />
-          <Stocks />
         </div>
       </div>
 
