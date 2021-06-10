@@ -68,7 +68,7 @@ function Detail (){
     return (
       <div>
         <ReactEcharts
-          option={option}
+          // option={option}
           style={{ height: "500px", width: "1000px" }}
         />
       </div>
