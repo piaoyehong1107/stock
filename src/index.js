@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import Detail from './component/Detail';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Link, Route, Switch, Redirect } from "react-router-dom";
@@ -12,7 +11,7 @@ ReactDOM.render(
     <Switch>
       <Route exact path="/" component={ ()=>{
         return(
-          <App />
+          <Market />
         )
       }} />
       <Route exact path="/detail/:ticker" component={ ()=>{
@@ -20,9 +19,8 @@ ReactDOM.render(
           <Detail />
         )
       }} />
-
     </Switch>
-  </BrowserRouter>,
+</BrowserRouter>,
   // </React.StrictMode>,
   document.getElementById('root')
 );

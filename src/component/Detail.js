@@ -5,32 +5,33 @@ import ReactEcharts from 'echarts-for-react';
 import {API_KEY} from '../constants'
 
 function Detail (){
+
+  const [stock, renderStock] = useState([])
   // state={
   //   renderStock: []
   // }
 
-  // componentDidMount(){
-  //   const ticker = this.props.match.params.ticker
-  //   console.log({ticker})
-  //     fetch(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v3/get-historical-data?region=US&symbol=${ticker}`, {
-  //         "method": "GET",
-  //         "headers": {
-  //             "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
-  //             "x-rapidapi-key": `${API_KEY}`
-  //         }
-  //     })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //         console.log(data)
-  //         this.setState({
-  //           renderStock: data.prices.reverse()
-  //         })
-  //     }).catch(err => {
-  //       this.setState({
-  //         renderStock: []
-  //       })
-  //     })
-  // }
+  useEffect(()=>{
+    // const ticker = this.props.match.params.ticker
+    console.log({ticker})
+      fetch(
+        `https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v3/get-historical-data?region=US&symbol=${ticker}`, {
+          "method": "GET",
+          "headers": {
+              "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
+              "x-rapidapi-key": `${API_KEY}`
+          }
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log(data)
+          renderStock(
+            data.prices.reverse()
+          )
+      }).catch(err => {
+        renderStock([])
+      })
+  },[])
 
   // render() {
   //   console.log(this.state.renderStock);
