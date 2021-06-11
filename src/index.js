@@ -4,6 +4,8 @@ import './index.css';
 import Detail from './component/Detail';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Link, Route, Switch, Redirect } from "react-router-dom";
+import Market from "./container/Market";
+
 
 ReactDOM.render(
   // <React.StrictMode>
