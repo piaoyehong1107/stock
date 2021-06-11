@@ -7,9 +7,6 @@ import {API_KEY} from '../constants'
 function Detail (){
 
   const [stock, renderStock] = useState([])
-  // state={
-  //   renderStock: []
-  // }
 
   useEffect(()=>{
     // const ticker = this.props.match.params.ticker
