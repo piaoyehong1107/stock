@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Stocks from "../component/Stocks";
 import { API_KEY } from "../constants";
-import { withRouter } from "react-router";
+import { withRouter } from 'react-router-dom';
 
 function Market () {
 
